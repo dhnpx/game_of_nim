@@ -18,7 +18,7 @@ class GameOfNim(Game):
             to_move="Max", utility=0, board=board, moves=actions)
 
     def result(self, state, move):
-        board = state.board
+        board = state.board.copy()
         board[move[0]] -= move[1]
 
         actions = []
@@ -26,7 +26,7 @@ class GameOfNim(Game):
             for j in range(board[i] + 1):
                 if (j == 0):
                     continue
-                    actions.append((i, j))
+                actions.append((i, j))
 
         return GameState(
             to_move=self.to_move(state),
